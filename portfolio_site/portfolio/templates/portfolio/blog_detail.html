@@ -1,0 +1,35 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ post.title }}</h1>
+    <p><small>Published on {{ post.published_date|date:"F j, Y" }}</small></p>
+    <div>{{ post.content|linebreaks }}</div>
+
+    {% if post.image %}
+        <div>
+            <h3>Image:</h3>
+            <img src="{{ post.image.url }}" alt="Image for {{ post.title }}" style="max-width: 100%; height: auto;">
+        </div>
+    {% endif %}
+
+    {% if post.pdf %}
+        <div>
+            <h3>PDF:</h3>
+            <a href="{{ post.pdf.url }}" target="_blank">Download PDF</a>
+        </div>
+    {% endif %}
+
+    {% if post.video %}
+        <div>
+            <h3>Video:</h3>
+            <video controls style="max-width: 100%; height: auto;">
+                <source src="{{ post.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    {% endif %}
+</article>
+{% endblock %}

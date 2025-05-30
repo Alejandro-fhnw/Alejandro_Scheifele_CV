@@ -1,0 +1,39 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<h1>My Projects</h1>
+
+<div class="entries-container">
+{% for project in projects %}
+    <div class="card-noskill">
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+
+        {% if project.image %}
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" style="max-width: 300px; height: auto;" />
+        {% endif %}
+
+        <p><strong>Skills:</strong>
+            {% for skill in project.skills.all %}
+                {{ skill.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+
+        {% if project.github_link %}
+        <p><a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+        {% endif %}
+
+
+
+        {% if project.pdf_file %}
+        <p><strong>PDF:</strong> <a href="{{ project.pdf_file.url }}" target="_blank" rel="noopener noreferrer">Download PDF</a></p>
+        {% endif %}
+
+        {% if project.video_file %}
+        <p><strong>Video:</strong> <a href="{{ project.video_file.url }}" target="_blank" rel="noopener noreferrer">Watch Video</a></p>
+        {% endif %}
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}

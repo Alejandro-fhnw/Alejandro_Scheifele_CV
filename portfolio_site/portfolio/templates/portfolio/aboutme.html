@@ -1,0 +1,26 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Hello, my name is Alejandro Scheifele.</h1>
+<div class="card" style="display: flex; gap: 20px; align-items: center;">
+
+    <div style="flex: 1;">
+        <p>I am a motivated Data Science student at the University of Applied Sciences and Arts Northwestern Switzerland (FHNW), with a strong passion for data analysis and interpretation. My interests lie particularly in the exploration of Artificial Intelligence, the application of data science in sports analytics, as well as the use of statistics and stochastic processes for modeling and evaluating complex datasets.</p>
+
+        <p>Currently, I am in the second semester of my Bachelor's degree, focusing on deepening my knowledge in areas such as machine learning, data visualization, web technologies, and advanced statistical methods and stochastic processes.</p>
+
+        <p>Before my studies, I completed an apprenticeship as an electrical installer and then pursued a degree in Systems Engineering at ABBTS. These solid technical foundations, along with my professional experience, form a strong basis for my current work as a Data Scientist.</p>
+
+        <p>In my free time, I am actively involved in sports, including football and snowboarding. I play for SV Höngg in the 1st League Classic, and I enjoy engaging in physical activities both in nature and as part of a team. Additionally, I have a passion for software development, spending my free time creating applications for various purposes, from games to analytical tools that offer practical value.</p>
+
+        <p>I am always open to exciting projects and internships — please feel free to reach out!</p>
+
+    </div>
+
+    <div style="flex: 0 0 300px;">
+        <img src="{% static 'images/Fussballkombifoto.jpg' %}" alt="Alejandro Scheifele" style="width: 100%; border-radius: 8px;">
+    </div>
+
+</div>
+{% endblock %}

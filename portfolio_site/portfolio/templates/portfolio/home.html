@@ -1,0 +1,22 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="intro-section">
+        <img src="{% static 'images/Profilfoto.PNG' %}" alt="Profile Picture" class="profile-img">
+        <div class="intro-text">
+            <h2>Welcome to my portfolio website!</h2>
+            <p>I am Alejandro Scheifele, a passionate developer, data science student, and technology enthusiast.</p>
+            <p>Here you can find information about my projects, skills, and professional experience.</p>
+
+            <h3>Certified Systems Engineer (PET Diploma))</h3>
+
+            <h3>Data Science Student at FHNW</h3>
+
+            <h3><a href="{% static 'pdf/CV_Alejandro_Scheifele_EN3.pdf' %}" target="_blank" rel="noopener noreferrer">Download CV</a></h3>
+        </div>
+    </div>
+
+{% endblock %}

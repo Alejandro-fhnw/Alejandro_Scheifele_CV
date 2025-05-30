@@ -1,0 +1,69 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Skills{% endblock %}
+
+{% block content %}
+<h1>My Skills</h1>
+
+<!-- Filter-Buttons werden hier eingefügt -->
+<div id="categoryFilters" class="category-filters">
+  <!-- Die Filter-Kategorien werden per JavaScript hier dynamisch als Buttons eingefügt -->
+</div>
+
+<div class="skills-grid">
+    {% for skill in skills %}
+    <div class="card skill-card" data-category="{{ skill.category|lower|slugify }}">
+        <div class="skill-icon">
+            <img src="{{ skill.icon }}" alt="{{ skill.name }} Icon" class="skill-img" />
+        </div>
+        <div class="skill-info">
+            <h3>{{ skill.name }}</h3>
+            <p>{{ skill.description }}</p>
+            <span class="skill-label {{ skill.category|lower|slugify }}">{{ skill.category }}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('categoryFilters');
+  const skills = document.querySelectorAll('.skill-card');
+
+  // Kategorien sammeln (Set vermeidet Duplikate)
+  const categories = new Set();
+  skills.forEach(skill => {
+    const cat = skill.getAttribute('data-category');
+    if (cat) categories.add(cat);
+  });
+
+  // Kategorien sortieren und Buttons anlegen
+  const sortedCats = Array.from(categories).sort();
+  sortedCats.forEach(cat => {
+    const button = document.createElement('button');
+    button.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+    button.classList.add('category-btn');
+    button.dataset.category = cat;
+    container.appendChild(button);
+
+    button.addEventListener('click', () => {
+      button.classList.toggle('active');
+
+      // Alle aktiven Kategorien sammeln
+      const activeCats = Array.from(container.querySelectorAll('.category-btn.active')).map(btn => btn.dataset.category);
+
+      // Skills filtern
+      skills.forEach(skill => {
+        const skillCat = skill.getAttribute('data-category');
+        if (activeCats.length === 0 || activeCats.includes(skillCat)) {
+          skill.style.display = '';
+        } else {
+          skill.style.display = 'none';
+        }
+      });
+    });
+  });
+});
+</script>
+
+{% endblock %}

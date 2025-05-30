@@ -1,0 +1,19 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}My Work Experience{% endblock %}
+
+{% block content %}
+<h1>My Work Experience</h1>
+<div class="entries-container">
+    {% for exp in experiences %}
+    <div class="card-noskill">
+        <h2>{{ exp.title }}</h2>
+        <p><strong>at {{ exp.company }}</strong></p>
+        <p><strong>From:</strong> {{ exp.start_date|date:"M. j, Y" }} <strong>to</strong> {{ exp.end_date|date:"M. j, Y" }}</p>
+        <p>{{ exp.description }}</p>
+    </div>
+    {% empty %}
+    <p>No experience entries yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

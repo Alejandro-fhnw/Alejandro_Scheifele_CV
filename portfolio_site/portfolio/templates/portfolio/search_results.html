@@ -1,0 +1,51 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<h2>Suchergebnisse für "{{ query }}"</h2>
+
+{% if static_pages %}
+  <h3>Seiten</h3>
+  <ul>
+  {% for page in static_pages %}
+    <li><a href="{% url page.url_name %}">{{ page.name }}</a></li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if results_projects %}
+  <h3>Projekte</h3>
+  <ul>
+  {% for project in results_projects %}
+    <li><a href="{% url 'project_detail' slug=project.slug %}">{{ project.title }}</a></li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if results_experience %}
+  <h3>Erfahrung</h3>
+  <ul>
+  {% for exp in results_experience %}
+    <li>{{ exp.job_title }} bei {{ exp.company }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if results_skills %}
+  <h3>Skills</h3>
+  <ul>
+  {% for skill in results_skills %}
+    <li>{{ skill.name }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if results_blogposts %}
+  <h3>Blogbeiträge</h3>
+  <ul>
+  {% for post in results_blogposts %}
+    <li><a href="{% url 'blog_detail' slug=post.slug %}">{{ post.title }}</a></li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% endblock %}
